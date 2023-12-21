@@ -1,0 +1,19 @@
+:host {
+  .mat-icon {
+    vertical-align: middle;
+    margin-right: 20px;
+  }
+}
+
+mat-drawer-container {
+  height: 100%;
+}
+
+mat-drawer {
+  width: 250px;
+  padding: 16px;
+}
+
+mat-drawer-content {
+  padding: 24px;
+}

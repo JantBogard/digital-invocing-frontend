@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>{{ isAdd ? 'Add' : 'Update' }} an address</h1>
+
+<form [formGroup]="addressForm" (ngSubmit)="submitData()">
+  <mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <mat-label>Street</mat-label>
+      <input formControlName="street" matInput type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>City</mat-label>
+      <input formControlName="city" matInput type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>State</mat-label>
+      <input formControlName="state" matInput type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>ZipCode</mat-label>
+      <input formControlName="zipCode" matInput type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Country</mat-label>
+      <input formControlName="country" matInput type="text">
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="reset" mat-button matDialogClose>Close</button>
+    <button type="submit" [color]="isAdd ? 'primary' : 'accent'" mat-raised-button [disabled]="addressForm.invalid">{{
+      isAdd ? 'Submit' : 'Update' }}</button>
+  </mat-dialog-actions>
+</form>
