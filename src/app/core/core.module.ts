@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 
 @NgModule({
   declarations: [
     SideBarComponent,
-    NavBarComponent
+    NavBarComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
   exports: [
     //components
     SideBarComponent,
-    NavBarComponent
+    NavBarComponent,
+    LoaderComponent
   ]
 })
 export class CoreModule { }

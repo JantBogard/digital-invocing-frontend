@@ -4,7 +4,14 @@ mat-card-content {
 
 mat-card-header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 mat-form-field {

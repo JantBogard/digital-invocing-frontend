@@ -1,7 +1,10 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>Address</mat-card-title>
-    <button color="primary" (click)="openAddFormDialog()" mat-raised-button>Add</button>
+    <div class="action-button">
+      <button (click)="getData()" matTooltip="Refresh" mat-icon-button><mat-icon>refresh</mat-icon></button>
+      <button color="primary" (click)="openAddFormDialog()" mat-raised-button>Add</button>
+    </div>
   </mat-card-header>
   <mat-card-content>
     <mat-form-field>
@@ -48,12 +51,12 @@
           <td mat-cell *matCellDef="let row">
             <mat-grid-list cols="2">
               <mat-grid-tile>
-                <button (click)="openUpdateFormDialog(row)" color="accent" mat-icon-button>
+                <button matTooltip="Update" (click)="openUpdateFormDialog(row)" color="accent" mat-icon-button>
                   <mat-icon>edit</mat-icon>
                 </button>
               </mat-grid-tile>
               <mat-grid-tile>
-                <button (click)="openDeleteDialog(row.id)" color="warn" mat-icon-button>
+                <button matTooltip="Delete" (click)="openDeleteDialog(row.id)" color="warn" mat-icon-button>
                   <mat-icon>delete</mat-icon>
                 </button>
               </mat-grid-tile>
