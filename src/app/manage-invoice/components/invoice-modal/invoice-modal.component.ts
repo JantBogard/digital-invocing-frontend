@@ -48,9 +48,9 @@ export class InvoiceModalComponent implements OnInit {
       )
 
       this.invoiceForm = this.formBuilder.group({
-        'customer': [this.invoice.customer, Validators.required],
+        'customer': [this.invoice.customer.id, Validators.required],
         'items': this.items,
-        'billingAddress': [this.invoice.billingAddress, Validators.required],
+        'billingAddress': [this.invoice.billingAddress.id, Validators.required],
       })
     } else {
       this.isAdd = true;
