@@ -1,0 +1,65 @@
+<div class="facture-action-button">
+  <a (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </a>
+
+  <button color="primary" printSectionId="facture" ngxPrint [useExistingCss]="true" mat-raised-button>Imprimer</button>
+</div>
+<div id="facture">
+  <div class="facture-main">
+    <div class="facture-header">
+      <div class="logo-title">
+        <div class="logo">
+        </div>
+        <h1>Invoice</h1>
+      </div>
+      <div class="information">
+        <div class="information-restaurant">
+        </div>
+        <div class="information-order-customer">
+          <div>
+            <p>Invoice N° : </p>
+            <p>Billing Address</p>
+          </div>
+          <div>
+            <p>{{ invoice.invoiceNumber }}</p>
+            <p>{{invoice.billingAddress.state }}, {{ invoice.billingAddress.city }}, {{ invoice.billingAddress.country
+              }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="facture-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Quantité</th>
+            <th>Produit</th>
+            <th>Prix unitaire</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of invoice.items; track item.id) {
+          <tr>
+            <td>{{ item.quantite }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }} Frs</td>
+            <td>{{ item.total }} Frs</td>
+          </tr>
+          }
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"></td>
+            <td>TOTAL</td>
+            <td>{{ invoice.totalAmount }} Frs</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div>
+        <p>Thanks for you are trust !</p>
+      </div>
+    </div>
+  </div>
+</div>

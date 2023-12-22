@@ -1,0 +1,71 @@
+<h1 mat-dialog-title>{{ isAdd ? 'Add' : 'Update' }} an address</h1>
+
+<form [formGroup]="invoiceForm" (ngSubmit)="submitData()">
+  <mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <mat-label>Customer</mat-label>
+      <mat-select formControlName="customer">
+        @for (customer of customers; track customer.id) {
+        <mat-option [value]="customer.id">{{ customer.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Billing Address</mat-label>
+      <mat-select formControlName="billingAddress">
+        @for (address of addressList; track address.id) {
+        <mat-option [value]="address.id">{{ address.state }}, {{ address.city }}, {{ address.country }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <div class="form-action">
+      <button type="button" color="primary" (click)="onAddItem()" mat-button>Add items</button>
+    </div>
+    <div formArrayName="items">
+      @for ( item of items.controls; track $index) {
+
+      <mat-grid-list [formGroupName]="$index" cols="5" rowHeight="90px">
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput type="text">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Quantite</mat-label>
+            <input formControlName="quantite" matInput type="number">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Price</mat-label>
+            <input formControlName="price" matInput type="number">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Total</mat-label>
+            <input formControlName="total" matInput type="number"
+              [value]="items.controls[$index].get('quantite')?.value * items.controls[$index].get('price')?.value">
+          </mat-form-field>
+        </mat-grid-tile>
+        @if ($index != 0) {
+        <mat-grid-tile>
+          <button type="button" matTooltip="remove" (click)="onRemoveItem($index)" color="warn" mat-icon-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-grid-tile>
+        }
+      </mat-grid-list>
+      }
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="reset" mat-button matDialogClose>Close</button>
+    <button type="submit" [color]="isAdd ? 'primary' : 'accent'" mat-raised-button [disabled]="invoiceForm.invalid">{{
+      isAdd ? 'Submit' : 'Update' }}</button>
+  </mat-dialog-actions>
+</form>

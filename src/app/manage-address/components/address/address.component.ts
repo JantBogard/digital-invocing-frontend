@@ -9,8 +9,8 @@ import { catchError, of, tap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { AddressModalComponent } from '../address-modal/address-modal.component';
 import { ConfirmDeleteDialogComponent } from '../../../shared/components/confirm-delete-dialog/confirm-delete-dialog.component';
-import { ModalAction } from '../../../shared/modalAction';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-address',
@@ -28,7 +28,8 @@ export class AddressComponent implements OnInit, AfterViewInit {
   constructor(
     private addressService: AddressService,
     private matDialog: MatDialog,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -89,9 +90,9 @@ export class AddressComponent implements OnInit, AfterViewInit {
   openDeleteDialog(id: number): void {
     const dialogRef = this.matDialog.open(ConfirmDeleteDialogComponent, { data: 'You really want to do this ?' });
 
-    this.loaderService.show();
     dialogRef.afterClosed().subscribe(
       (response: boolean) => {
+        this.loaderService.show();
         if (response) {
           this.addressService.delete(id).pipe(
             tap((res) => {
@@ -100,6 +101,7 @@ export class AddressComponent implements OnInit, AfterViewInit {
             }),
             catchError((error) => {
               this.loaderService.hide();
+              this.snackbar.open(error.message, 'error');
               return of(error)
             })
           ).subscribe()
@@ -113,14 +115,12 @@ export class AddressComponent implements OnInit, AfterViewInit {
     this.loaderService.show();
     this.addressService.add(address).pipe(
       tap((response) => {
-        this.dataSource.data.reverse();
-        this.dataSource.data.push(response);
-        this.dataSource.data.reverse();
         this.loaderService.hide();
+        this.getData();
       }),
       catchError(error => {
         this.loaderService.hide();
-        console.error(error);
+        this.snackbar.open(error.message, 'error');
         return of(`We have an error: ${error}`)
       })
     ).subscribe();
@@ -130,16 +130,12 @@ export class AddressComponent implements OnInit, AfterViewInit {
     this.loaderService.show();
     this.addressService.update(id, address).pipe(
       tap((response) => {
-        this.dataSource.data.forEach(
-          elt => {
-            if (elt.id == id) {
-              elt = response
-            }
-          }
-        )
+        this.loaderService.hide();
+        this.getData();
       }),
       catchError(error => {
         this.loaderService.hide();
+        this.snackbar.open(error.message, 'error');
         return of(`We have an error: ${error}`)
       })
     ).subscribe();

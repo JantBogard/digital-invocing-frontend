@@ -40,8 +40,8 @@ export class AddressModalComponent implements OnInit {
     }
   }
 
-  submitData() {
+  submitData(): void {
 
-    this.dialogRef.close(this.addressForm.value)
+    this.dialogRef.close(this.addressForm.value);
   }
 }

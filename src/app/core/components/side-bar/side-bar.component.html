@@ -1,8 +1,14 @@
 <mat-drawer-container>
   <mat-drawer mode="side" opened>
     <mat-nav-list>
-      <a routerLink="/address" (click)="navigateTo('/address')" mat-list-item>
+      <a routerLink="/address" routerLinkActive="active" (click)="navigateTo('/address')" mat-list-item>
         <mat-icon>home</mat-icon> Address
+      </a>
+      <a routerLink="/customer" routerLinkActive="active" (click)="navigateTo('/customer')" mat-list-item>
+        <mat-icon>person</mat-icon> Customer
+      </a>
+      <a routerLink="/invoice" routerLinkActive="active" (click)="navigateTo('/invoice')" mat-list-item>
+        <mat-icon>receipt</mat-icon> Invoice
       </a>
     </mat-nav-list>
   </mat-drawer>

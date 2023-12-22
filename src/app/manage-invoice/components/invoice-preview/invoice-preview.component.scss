@@ -1,0 +1,170 @@
+.facture-action-button {
+  width: 794px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    color: #000;
+  }
+}
+
+.facture-main {
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 794px;
+  margin-inline: auto;
+  font-family: "Inter";
+  font-size: 16px;
+
+  .facture-header {
+    width: 100%;
+
+    .logo-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .logo {
+        width: 100px;
+        height: 100px;
+        border-radius: 8px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      h1 {
+        font-size: 40px;
+        font-family: "Quicksand";
+        font-weight: 700;
+      }
+    }
+
+    .information {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+
+      .information-restaurant {
+        p {
+          margin: 0;
+          margin-bottom: 10px;
+        }
+        p:first-child {
+          font-weight: 700;
+          font-size: 20px;
+        }
+      }
+
+      .information-order-customer {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+
+        .margin-top {
+          margin-top: 25px;
+        }
+
+        p {
+          margin-bottom: 10px;
+        }
+
+        div:first-child {
+          font-weight: 700;
+          text-align: end;
+
+          p:last-child {
+            margin-top: 25px;
+          }
+        }
+
+        div:last-child {
+          text-align: start;
+        }
+      }
+    }
+  }
+
+  .facture-container {
+    height: 100%;
+    margin-top: 100px;
+
+    table {
+      width: 100%;
+
+      thead {
+        background-color: #0e689d;
+        color: #fff;
+        text-align: center;
+      }
+
+      tbody {
+        tr td:first-child,
+        tr td:nth-child(3),
+        tr td:last-child {
+          text-align: center;
+        }
+
+        tr:nth-child(odd) {
+          background-color: #bcbebf; //#BCBEBF;
+
+          td:last-child {
+            background-color: #f3f0f0;
+          }
+        }
+
+        tr:nth-child(even) {
+          background-color: #f3f0f0;
+
+          td:last-child {
+            background-color: #bcbebf;
+          }
+        }
+      }
+
+      tfoot {
+        tr:first-child td:last-child {
+          border-bottom: 2px solid #0e689d;
+        }
+
+        tr td:last-child {
+          text-align: center;
+        }
+
+        tr td:nth-child(2) {
+          font-weight: 700;
+        }
+
+        tr:last-child {
+          color: #0e689d;
+
+          td:last-child {
+            background-color: #0e689d;
+            color: #fff;
+          }
+        }
+      }
+
+      th,
+      td {
+        padding: 10px 20px;
+      }
+    }
+
+    div {
+      margin-top: 100px;
+      text-align: center;
+      font-weight: 700;
+      color: #0e689d;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import { BASEURL } from "../shared/globalConstante";
 
 @Injectable()
 export class AddressService {
+  public addressList!: Array<Address>;
   constructor(private http: HttpClient) { }
 
   public getAll(): Observable<Array<Address>> {
